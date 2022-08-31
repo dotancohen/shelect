@@ -1,7 +1,7 @@
 
 # Shell Select - Shelect
 
-Parse the output of unix utilities and enable SQL-like queries on that output.
+Perform SQL-like queries on the output of CLI utilities.
 
 ## Usage
 
