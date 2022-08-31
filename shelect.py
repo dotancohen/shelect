@@ -1,4 +1,7 @@
 
+import re
+
+
 """
 Parse first line for field names - get the character range for each field.
 
@@ -55,4 +58,64 @@ ps_aux_expected_fields = {
 	"time": [62,65],
 	"command": [67,95],
 }
+
+
+
+def main(cmd: str):
+	lines = cmd.split("\n")
+	fields = get_fields(lines)
+	#print(fields) # DEBUGGING
+
+	for line in lines[1:]:
+		print("A line of output")
+
+	return
+
+
+def get_fields(cmd_lines: list):
+
+	width = len(max(cmd_lines, key=len))
+	cols_is_space = [True]*(width+1)
+
+	for line in cmd_lines:
+		pos = 0
+		for char in line:
+			if char != ' ':
+				cols_is_space[pos] = False
+			pos += 1
+
+
+	fields = {}
+	pos = 0
+	in_field = False
+	current_field_name = ""
+	current_field_pos_begin = 0
+	title_row = cmd_lines[0] + " "*(width-len(cmd_lines[0]))
+
+	for col_is_space in cols_is_space:
+
+		if in_field:
+			if col_is_space:
+				in_field = False
+				field_name = re.sub("[^a-z0-9]", "", current_field_name.strip().lower())
+				fields[field_name] = [current_field_pos_begin, pos-1]
+
+			else:
+				current_field_name += title_row[pos]
+
+		else:
+			if not col_is_space:
+				in_field = True
+				current_field_name = title_row[pos]
+				current_field_pos_begin = pos
+
+		pos += 1
+
+	return fields
+
+
+if __name__ == "__main__":
+	main(ps)
+	#print(ps_aux_expected_fields) # DEBUGGING
+	#main(ps_aux)
 
