@@ -80,9 +80,23 @@ def main(cmd: str):
 
 
 	for line in lines[1:]:
-		print("A line of output")
+		line_fields = []
+
+		for name,size in fields.items():
+			field_value = line[size[0]:size[1]+1].strip()
+			line_fields.append(field_value)
+
+		cur.execute(insert_stmt, line_fields)
+
+
+	res = cur.execute("SELECT * FROM shelect")
+	print( str(res.fetchall()) )
+
+	res = cur.execute("SELECT pid, cmd FROM shelect")
+	print( str(res.fetchall()) )
 
 	con.close()
+
 	return
 
 
