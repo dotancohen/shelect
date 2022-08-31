@@ -1,6 +1,8 @@
 
 import re
 
+from collections import OrderedDict
+
 
 """
 Parse first line for field names - get the character range for each field.
@@ -72,7 +74,7 @@ def main(cmd: str):
 	return
 
 
-def get_fields(cmd_lines: list):
+def get_fields(cmd_lines: list) -> OrderedDict:
 
 	width = len(max(cmd_lines, key=len))
 	cols_is_space = [True]*(width+1)
@@ -85,7 +87,7 @@ def get_fields(cmd_lines: list):
 			pos += 1
 
 
-	fields = {}
+	fields = OrderedDict()
 	pos = 0
 	in_field = False
 	current_field_name = ""
