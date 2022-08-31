@@ -19,9 +19,10 @@ Note that field names might right-aligned left-aligned or centered!
 # $ ps | head
 ps = """\
     PID TTY          TIME CMD
+    526 pts/5    00:00:00 b
  256296 pts/5    00:00:00 bash
  257684 pts/5    00:00:00 ps
- 257685 pts/5    00:00:00 head
+ 257685 pts/5    00:00:00 head\
 """
 
 ps_expected_fields = {
@@ -44,7 +45,7 @@ root           5  0.0  0.0      0     0 ?        I<   Aug28   0:00 [netns]
 root           7  0.0  0.0      0     0 ?        I<   Aug28   0:00 [kworker/0:0H-events_highpri]
 root          10  0.0  0.0      0     0 ?        I<   Aug28   0:00 [mm_percpu_wq]
 root          11  0.0  0.0      0     0 ?        S    Aug28   0:00 [rcu_tasks_rude_]
-root          12  0.0  0.0      0     0 ?        S    Aug28   0:00 [rcu_tasks_trace]
+root          12  0.0  0.0      0     0 ?        S    Aug28   0:00 [rcu_tasks_trace]\
 """
 
 ps_aux_expected_fields = {
