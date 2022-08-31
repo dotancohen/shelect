@@ -22,3 +22,7 @@ $ ps aux | shelect pid, command
 
 Shelect was inspired by [Murex](https://github.com/lmorg/murex/) in [this HN discussion](https://news.ycombinator.com/item?id=30610532).
 
+## License
+
+GNU GPL v3
+
