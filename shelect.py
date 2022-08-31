@@ -1,6 +1,7 @@
 
 import re
 import sqlite3
+import sys
 
 from collections import OrderedDict
 
@@ -65,11 +66,9 @@ ps_aux_expected_fields = {
 
 
 
-def main(cmd: str):
+def main(lines: list, argv: list):
 
-	lines = cmd.split("\n")
 	fields = get_fields(lines)
-	#print(fields) # DEBUGGING
 
 	con = sqlite3.connect(":memory:")
 	cur = con.cursor()
@@ -77,7 +76,6 @@ def main(cmd: str):
 	insert_stmt = "INSERT INTO shelect VALUES(" + ",".join(["?"]*len(fields)) + ")"
 	cur.execute(create_table)
 	con.commit()
-
 
 	for line in lines[1:]:
 		line_fields = []
@@ -143,7 +141,7 @@ def get_fields(cmd_lines: list) -> OrderedDict:
 
 
 if __name__ == "__main__":
-	main(ps)
-	#print(ps_aux_expected_fields) # DEBUGGING
-	#main(ps_aux)
+	main(sys.stdin.readlines(), sys.argv[1:])
+	#main(ps.split("\n"), sys.argv[1:])
+	#main(ps_aux.split("\n"), sys.argv[1:])
 
