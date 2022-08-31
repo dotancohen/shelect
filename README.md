@@ -1,28 +1,20 @@
 
 # Shell Select - Shelect
 
-Wrap awk, sort, wc, and other text-processing utilities in an SQL-like syntax.
+Parse the output of unix utilities and enable SQL-like queries on that output.
 
 ## Usage
 
-### Show available fields
+### Show formatted input
 
 ```
-ps aux | shelect
+$ ps aux | shelect
 ```
 
 ### Select specific fields
 
 ```
-ps aux | shelect COUNT(*), user GROUP BY user ORDER BY 1
-```
-
-### Select specific fields formatted for consumption by scripts
-
-Disables header line and table borders, separates fields by nullbytes and separates lines by newlines.
-
-```
-ps aux | shelect -0 COUNT(*), user GROUP BY user ORDER BY 1
+$ ps aux | shelect pid, command
 ```
 
 
