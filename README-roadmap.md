@@ -8,13 +8,21 @@ Perform SQL-like queries on the output of CLI utilities.
 ### Show formatted input
 
 ```
-$ ps aux | shelect
+$ ps | shelect
+      pid    tty      time      cmd
+0  338644  pts/4  00:00:00     bash
+1  339023  pts/4  00:00:00       ps
+2  339024  pts/4  00:00:00  python3
 ```
 
 ### Select specific fields
 
 ```
-$ ps aux | shelect pid, command
+$ ps | shelect pid, cmd
+      pid      cmd
+0  338644     bash
+1  339046       ps
+2  339047  python3
 ```
 
 ### Select specific fields formatted for consumption by scripts - Not yet implemented, many need to rethink this.
