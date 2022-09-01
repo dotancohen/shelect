@@ -94,8 +94,8 @@ def main(lines: list, argv: list):
 
 def get_fields(cmd_lines: list) -> OrderedDict:
 
-	width = len(max(cmd_lines, key=len))
-	cols_is_space = [True]*(width+1)
+	width = len(max(cmd_lines, key=len)) + 1
+	cols_is_space = [True]*(width)
 
 	for line in cmd_lines:
 		pos = 0
